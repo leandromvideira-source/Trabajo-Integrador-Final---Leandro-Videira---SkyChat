@@ -1,0 +1,245 @@
+.profile-panel {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header-section {
+    padding: 24px 20px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-avatar-large {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 3px solid #ffffff54;
+    box-shadow: 0 4px 12px rgba(45, 91, 255, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.profile-avatar-large:hover {
+    transform: scale(1.03);
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.profile-role {
+    font-size: 13px;
+    color: #999;
+}
+
+.profile-sections {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+}
+
+.profile-sections::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-sections::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.profile-sections::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.profile-section {
+    margin-bottom: 4px;
+}
+
+.section-toggle {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #dddcdc;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.section-toggle:hover {
+    background-color: #f5f5f5;
+}
+
+.toggle-arrow {
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.section-content {
+    padding: 12px 16px 16px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #666;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-content p {
+    margin: 8px 0;
+}
+
+.section-content p:first-child {
+    margin-top: 0;
+}
+
+.profile-status-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    animation: slideDown 0.3s ease;
+}
+
+.profile-status-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: min(400px, 92vw);
+}
+
+.profile-status-content {
+    padding: 0;
+}
+
+.profile-status-phone-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-status-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #000;
+}
+
+.profile-status-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 14px 10px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+    z-index: 2;
+}
+
+.profile-status-name {
+    margin: 0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.profile-status-close-btn {
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-status-nav-btn {
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    transition: all 0.2s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.profile-status-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.profile-status-nav-prev {
+    left: 12px;
+}
+
+.profile-status-nav-next {
+    right: 12px;
+}
+
+.profile-status-empty {
+    margin: 12px 0 0;
+    text-align: center;
+    color: #fff;
+}
+
+@media (max-width: 1024px) {
+    .profile-panel {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-panel {
+        display: none;
+    }
+}
