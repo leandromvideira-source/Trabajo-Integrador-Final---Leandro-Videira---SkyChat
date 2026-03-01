@@ -1,8 +1,11 @@
-# SkyChat - Aplicación de Mensajería en Tiempo Real
+# Trabajo-Integrador-Final---Leandro-Videira---SkyChat
+SkyChat - Aplicación de Mensajes
 
 ## 📱 Descripción del Proyecto
 
-**SkyChat** es una aplicación web moderna de mensajería instantánea construida con **React** y **React Router**. Permite a los usuarios comunicarse con contactos individuales y participar en chats grupales, con un diseño totalmente responsivo y una interfaz atractiva basada en glassmorphism.
+**SkyChat** 
+Para crear skychat use react y react router. 
+Es una aplicacion de chats, grupos etc.
 
 ### ✨ Características Principales
 
@@ -18,7 +21,6 @@
   
 - **Filtros de Búsqueda**:
   - Todos los chats
-  - No leídos
   - Favoritos
   - Grupos
 
@@ -28,13 +30,7 @@
   - Modal inteligente para ProfilePanel (≤1020px)
   - Mobile drawer para ChatList (≤768px)
 
-- **Interfaz Moderna**:
-  - Glassmorphism (efecto blur y transparencia)
-  - Animaciones suaves (fadeIn, slideUp, slideDown)
-  - Tema oscuro predeterminado
-  - Íconos e indicadores visuales
-
-- **Sistema de Autenticación**: Pantalla de login con navegación protegida
+- **Sistema de Autenticación**: En la pantalla del login (para logearte necesitas ingresar tu mail) se hizo uno codigo para validar que esea un mail de lo contrario dira un alerta que no es un mail.
 
 ## 🛠️ Librerías y Tecnologías Utilizadas
 
@@ -91,40 +87,6 @@ src/
 └── index.html
 ```
 
-## 🚀 Instalación y Ejecución
-
-### Requisitos Previos
-- Node.js (v16 o superior)
-- npm o yarn
-
-### Pasos de Instalación
-
-1. **Clonar el repositorio**
-```bash
-git clone <url-del-repositorio>
-cd "Proyecto final - Leandro Videira"
-```
-
-2. **Instalar dependencias**
-```bash
-npm install
-```
-
-3. **Ejecutar en modo desarrollo**
-```bash
-npm run dev
-```
-
-4. **Compilar para producción**
-```bash
-npm run build
-```
-
-5. **Previsualizar compilación de producción**
-```bash
-npm run preview
-```
-
 ## 📊 Características Técnicas
 
 ### Responsividad
@@ -145,12 +107,6 @@ npm run preview
 - **React Router v7** para navegación cliente-side
 - Rutas protegidas
 - Parámetros dinámicos para IDs de contacto/grupo
-
-### Estilos
-- **CSS3 vanilla** sin frameworks adicionales
-- Glassmorphism con `backdrop-filter`
-- Gradientes lineales personalizados
-- Animaciones CSS keyframe
 
 ### Componentes Principales
 
@@ -187,21 +143,12 @@ El proyecto incluye datos precargados:
 - **Estados**: Videos de estado para cada contacto
 - **Información**: Última conexión, número de miembros, etc.
 
-## 🐛 Scripts Disponibles
+Algunas de los boton son NO FUNCINALES:
+- Todo lo que esta dentro de grupos, notificaciones, ajustes. 
+- Botones de attachment y microfono.
+- Mensajes a destacar y/o enviar archivos multimedia y que se vean en el profile panel de cada chat. 
+- Boton de register, forgot password.
 
-```bash
-npm run dev       # Inicia servidor de desarrollo
-npm run build     # Compila para producción
-npm run lint      # Ejecuta ESLint
-npm run preview   # Previsualiza build de producción
-```
-
-## 📦 Dependencias Adicionales (Global)
-
-El proyecto utiliza características nativas del navegador:
-- **LocalStorage** (opcional para persistencia)
-- **Fetch API** (para futuras integraciones)
-- **CSS Grid y Flexbox** para layouts
 
 ## 🔄 Flujo de Datos
 
@@ -214,25 +161,6 @@ App.jsx (Estado global)
   └→ LoginScreen (Autenticación)
 ```
 
-## 🎯 Próximas Mejoras
-
-- [ ] Integración con API backend
-- [ ] Persistencia de datos en base de datos
-- [ ] Notificaciones push
-- [ ] Llamadas de voz/video
-- [ ] Compartir archivos
-- [ ] Emojis y reacciones
-- [ ] Tipeo en tiempo real
-- [ ] Encriptación de mensajes
-
 ## 👨‍💻 Autor
 
 **Leandro Videira** - Trabajo Integrador Final
-
-## 📄 Licencia
-
-Este proyecto es de código educativo y libre para usar con fines de aprendizaje.
-
----
-
-**Última actualización**: Marzo 2026
