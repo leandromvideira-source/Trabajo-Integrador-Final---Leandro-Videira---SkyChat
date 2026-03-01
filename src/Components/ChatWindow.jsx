@@ -1,12 +1,17 @@
 import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router'
 import { ContactsContext } from '../Context/ContactsContext'
+import { groups } from '../data/ContactData.js'
 import './ChatWindow.css'
 
 export default function ChatWindow({ setShowProfileModal }) {
     const { contacts, addMessage } = useContext(ContactsContext)
     const { contact_id } = useParams()
-    const contact_selected = contacts.find(contact => Number(contact.id) === Number(contact_id))
+    
+    const isGroup = contact_id && contact_id.toString().startsWith('g')
+    const contact_selected = isGroup 
+        ? groups.find(g => g.id === contact_id)
+        : contacts.find(contact => Number(contact.id) === Number(contact_id))
     const [message, setMessage] = useState('')
 
     const handleSubmit = (e) => {
@@ -31,10 +36,10 @@ export default function ChatWindow({ setShowProfileModal }) {
         <div className="chat-window">
             <div className="chat-header-top">
                 <div className="chat-header-info">
-                    <img src={contact_selected.profile_picture} alt={contact_selected.Name} className="header-avatar" />
+                    <img src={contact_selected.profile_picture} alt={contact_selected.Name || contact_selected.name} className="header-avatar" />
                     <div>
-                        <h2>{contact_selected.Name}</h2>
-                        <p className="status-text">Disponible</p>
+                        <h2>{contact_selected.Name || contact_selected.name}</h2>
+                        <p className="status-text">{isGroup ? `${contact_selected.members.length} miembros` : 'Disponible'}</p>
                     </div>
                 </div>
                 <button className="profile-menu-btn" onClick={() => setShowProfileModal(true)} title="Ver información de contacto">

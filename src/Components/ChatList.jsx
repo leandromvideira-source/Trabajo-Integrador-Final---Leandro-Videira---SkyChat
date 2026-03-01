@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router'
 import { ContactsContext } from '../Context/ContactsContext'
+import { groups } from '../data/ContactData.js'
 import './ChatList.css'
 
 export default function ChatList({ isModalOpen = false, setIsModalOpen = () => {} }) {
@@ -8,10 +9,29 @@ export default function ChatList({ isModalOpen = false, setIsModalOpen = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const [activeId, setActiveId] = useState(null)
     const [showAddContacts, setShowAddContacts] = useState(false)
+    const [filterType, setFilterType] = useState('todos')
 
-    const filteredContacts = contacts.filter(contact =>
-        contact.Name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    const getFilteredItems = () => {
+        if (filterType === 'grupos') {
+            return groups.filter(group =>
+                group.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ).map(group => ({ ...group, isGroup: true }))
+        }
+
+        let filtered = contacts.filter(contact =>
+            contact.Name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+
+        if (filterType === 'nocleidos') {
+            filtered = filtered.filter(contact => contact.is_unread)
+        } else if (filterType === 'favoritos') {
+            filtered = filtered.filter(contact => contact.is_favorite)
+        }
+
+        return filtered
+    }
+
+    const filteredItems = getFilteredItems()
 
     return (
         <>
@@ -34,14 +54,35 @@ export default function ChatList({ isModalOpen = false, setIsModalOpen = () => {
                 />
             </div>
 
+            <div className="filter-pills">
+                <button 
+                    className={`filter-pill ${filterType === 'todos' ? 'active' : ''}`}
+                    onClick={() => setFilterType('todos')}
+                >
+                    Todos
+                </button>
+                <button 
+                    className={`filter-pill ${filterType === 'favoritos' ? 'active' : ''}`}
+                    onClick={() => setFilterType('favoritos')}
+                >
+                    Favoritos
+                </button>
+                <button 
+                    className={`filter-pill ${filterType === 'grupos' ? 'active' : ''}`}
+                    onClick={() => setFilterType('grupos')}
+                >
+                    Grupos
+                </button>
+            </div>
+
             <div className="contacts-list">
-                {filteredContacts.map(contact => (
+                {filteredItems.map(item => (
                     <Link
-                        to={`/chat/${contact.id}`}
-                        key={contact.id}
-                        className={`chat-item ${activeId === contact.id ? 'active' : ''}`}
+                        to={`/chat/${item.id}`}
+                        key={item.id}
+                        className={`chat-item ${activeId === item.id ? 'active' : ''}`}
                         onClick={() => {
-                            setActiveId(contact.id)
+                            setActiveId(item.id)
                             if (isModalOpen) {
                                 setIsModalOpen(false)
                             }
@@ -49,50 +90,23 @@ export default function ChatList({ isModalOpen = false, setIsModalOpen = () => {
                     >
                         <div className="chat-avatar-wrapper">
                             <img
-                                src={contact.profile_picture}
-                                alt={contact.Name}
+                                src={item.profile_picture}
+                                alt={item.Name || item.name}
                                 className="chat-avatar"
                             />
-                            <div className="status-badge"></div>
+                            {item.isGroup ? (
+                                <div className="group-badge">👥</div>
+                            ) : (
+                                <div className="status-badge"></div>
+                            )}
                         </div>
                         <div className="chat-info">
-                            <h3>{contact.Name}</h3>
-                            <p>{contact.last_time_connection}</p>
+                            <h3>{item.Name || item.name}</h3>
+                            <p>{item.last_time_connection}</p>
                         </div>
                     </Link>
                 ))}
             </div>
-
-            {/* Botón flotante + */}
-            <button 
-                className="fab-add-contacts" 
-                onClick={() => setShowAddContacts(!showAddContacts)}
-                title="Agregar contactos"
-            >
-                +
-            </button>
-
-            {/* Modal de contactos */}
-            {showAddContacts && (
-                <div className="add-contacts-modal">
-                    <div className="add-contacts-header">
-                        <h3>Agregar Contacto</h3>
-                        <button className="close-modal-btn" onClick={() => setShowAddContacts(false)}>✕</button>
-                    </div>
-                    <div className="add-contacts-list">
-                        {contacts.map(contact => (
-                            <div key={contact.id} className="add-contact-item">
-                                <img src={contact.profile_picture} alt={contact.Name} className="add-contact-avatar" />
-                                <div className="add-contact-info">
-                                    <p className="add-contact-name">{contact.Name}</p>
-                                    <p className="add-contact-phone">{contact.phoneNumber || contact.PhoneNumber}</p>
-                                </div>
-                                <button className="add-contact-action">+</button>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
             </div>
         </>
     )

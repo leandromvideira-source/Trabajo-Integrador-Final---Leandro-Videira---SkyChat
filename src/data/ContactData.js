@@ -6,6 +6,8 @@ const contacts = [
         last_time_connection: 'hace 2 horas',
         profile_picture: 'https://i.redd.it/0o635tt2siaf1.jpeg',
         statusvideo: '/Estados/Homero1.mp4',
+        is_favorite: true,
+        is_unread: true,
         messages: [
             {
                 id: 1,
@@ -30,6 +32,8 @@ const contacts = [
         last_time_connection: 'hace 1 hora',
         profile_picture: '/Avatar/cletus.jpg',
         statusvideo: '/Estados/cletus.mp4',
+        is_favorite: false,
+        is_unread: false,
         messages: [
             {
                 id: 1,
@@ -62,6 +66,8 @@ const contacts = [
         last_time_connection: 'hace 30 min',
         profile_picture: '/Avatar/milhouse.webp',
         statusvideo: '/Estados/dileabart.mp4',
+        is_favorite: true,
+        is_unread: false,
         messages: [
             {
                 id: 1,
@@ -107,6 +113,8 @@ const contacts = [
         last_time_connection: 'hace 45 min',
         profile_picture: '/Avatar/JefeGorgory.jpg',
         statusvideo: '/Estados/Jefe-gogory1.mp4',
+        is_favorite: false,
+        is_unread: true,
         messages: [
             {
                 id: 1,
@@ -138,6 +146,8 @@ const contacts = [
         last_time_connection: 'hace 15 min',
         profile_picture: '/Avatar/barney.jpeg',
         statusvideo: '/Estados/barney.mp4',
+        is_favorite: true,
+        is_unread: true,
         messages: [
             {
                 id: 1,
@@ -190,6 +200,8 @@ const contacts = [
         last_time_connection: 'hace 24 min',
         profile_picture: '/Avatar/otto.jpg',
         statusvideo: '/Estados/otto.mp4',
+        is_favorite: false,
+        is_unread: false,
         messages: [
             {
                 id: 1,
@@ -209,4 +221,79 @@ const contacts = [
     }
 ];
 
-export default contacts;
+const groups = [
+    {
+        id: 'g1',
+        name: 'Amigos del Bar',
+        is_favorite: true,
+        is_unread: true,
+        lastMessage: 'Nos vemos en el bar!',
+        last_time_connection: 'hace 5 min',
+        profile_picture: '/Avatar/Taberna.jpg',
+        members: [
+            { id: 1, Name: 'Homero', profile_picture: 'https://i.redd.it/0o635tt2siaf1.jpeg' },
+            { id: 5, Name: 'Barney Gumble', profile_picture: '/Avatar/barney.jpeg' },
+            { id: 6, Name: 'Otto', profile_picture: '/Avatar/otto.jpg' }
+        ],
+        messages: [
+            {
+                id: 1,
+                Text: 'Hola muchachos! como estan?',
+                send_by_name: false,
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
+            {
+                id: 2,
+                Text: 'hola!! estoy bien, y ustedes?',
+                send_by_name: true,
+                created_at: '2023-02-02 12:05:00',
+                is_read: false
+            },
+            {
+                id: 3,
+                Text: 'hola!! bien y ustedes?',
+                send_by_name: false,
+                created_at: '2023-02-02 12:05:00',
+                is_read: false
+            },
+            {
+                id: 1,
+                Text: 'nos vemos en el bar de moe!',
+                send_by_name: false,
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
+            {
+                id: 1,
+                Text: 'A las 6 de la tarde en punto!',
+                send_by_name: false,
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
+            {
+                id: 2,
+                Text: 'perfecto!!',
+                send_by_name: true,
+                created_at: '2023-02-02 12:05:00',
+                is_read: false
+            },
+        ],
+        starredMessages: [
+            {
+                id: 1,
+                Text: 'A las 6 de la tarde en punto!',
+                author: 'Homero',
+                created_at: '2023-02-02 12:00:00'
+            },
+            {
+                id: 2,
+                Text: 'Nos vemos en el bar de Moe',
+                author: 'Barney Gumble',
+                created_at: '2023-02-02 11:50:00'
+            }
+        ]
+    }
+];
+
+export { contacts as default, groups };

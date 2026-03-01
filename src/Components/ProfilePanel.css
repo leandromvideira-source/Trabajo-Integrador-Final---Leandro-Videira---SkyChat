@@ -142,11 +142,11 @@
 
 .section-content {
     padding: 12px 16px 16px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f934;
     border-radius: 12px;
     margin-top: 4px;
     font-size: 13px;
-    color: #666;
+    color: #ffffffcb;
     animation: slideDown 0.3s ease;
 }
 
@@ -168,6 +168,148 @@
 
 .section-content p:first-child {
     margin-top: 0;
+}
+
+/* Miembros */
+.members-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 12px;
+}
+
+.member-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.member-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.member-name {
+    font-size: 11px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+    word-break: break-word;
+}
+
+/* Mensajes destacados */
+.starred-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.starred-message-item {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #f24467;
+    border-radius: 8px;
+}
+
+.starred-author {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fc9db0;
+    margin: 0 0 4px 0;
+}
+
+.starred-text {
+    font-size: 12px;
+    color: #ffffff;
+    margin: 4px 0;
+}
+
+.starred-date {
+    font-size: 10px;
+    color: #cbc8c8;
+}
+
+/* Multimedia */
+.media-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.media-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.media-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.media-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.media-name {
+    font-size: 12px;
+    color: #ffffff;
+    margin: 0;
+    word-break: break-word;
+}
+
+.media-date {
+    font-size: 10px;
+    color: #999;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Archivos y documentos */
+.files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.file-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.file-name {
+    font-size: 12px;
+    color: #ffffff;
+    margin: 0;
+    word-break: break-word;
+}
+
+.file-details {
+    font-size: 10px;
+    color: #999;
+    display: block;
+    margin-top: 2px;
 }
 
 .profile-status-overlay {

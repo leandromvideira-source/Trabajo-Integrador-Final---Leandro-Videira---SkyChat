@@ -73,6 +73,52 @@
     box-shadow: 0 0 0 3px rgba(45, 91, 255, 0.1);
 }
 
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.filter-pills::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filter-pills::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filter-pills::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.filter-pill {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.filter-pill:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
+
+.filter-pill.active {
+    background: linear-gradient(135deg, #f24467 0%, #9c1a4c 100%);
+    color: #ffffff;
+    border-color: #9c1a4c;
+}
+
 .contacts-list {
     flex: 1;
     overflow-y: auto;
@@ -148,6 +194,22 @@
     box-shadow: 0 2px 4px rgba(0, 208, 132, 0.3);
 }
 
+.group-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #f24467;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(242, 68, 103, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
 .chat-info {
     flex: 1;
     min-width: 0;
@@ -166,36 +228,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.fab-add-contacts {
-    position: absolute;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #f24467 0%, #9c1a4c 100%);
-    border: none;
-    color: white;
-    font-size: 32px;
-    font-weight: 300;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(242, 68, 103, 0.4);
-    transition: all 0.3s ease;
-    z-index: 100;
-}
-
-.fab-add-contacts:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(242, 68, 103, 0.6);
-}
-
-.fab-add-contacts:active {
-    transform: scale(0.95);
 }
 
 .add-contacts-modal {
@@ -440,11 +472,6 @@
         height: 52px;
     }
 
-    .fab-add-contacts {
-        width: 64px;
-        height: 64px;
-        font-size: 36px;
-    }
 }
 
 /* 1440px - 1999px */
@@ -483,11 +510,6 @@
         font-size: 13px;
     }
 
-    .fab-add-contacts {
-        width: 52px;
-        height: 52px;
-        font-size: 28px;
-    }
 }
 
 /* 1024px - 1440px */
@@ -527,13 +549,6 @@
         font-size: 11px;
     }
 
-    .fab-add-contacts {
-        width: 50px;
-        height: 50px;
-        font-size: 26px;
-        bottom: 20px;
-        right: 20px;
-    }
 }
 
 /* 768px - 1024px */
@@ -595,13 +610,7 @@
         font-size: 11px;
     }
 
-    .fab-add-contacts {
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-        bottom: 18px;
-        right: 18px;
-    }
+
 }
 
 /* 481px - 768px */
@@ -644,9 +653,6 @@
         padding: 12px;
     }
 
-    .fab-add-contacts {
-        display: none;
-    }
 }
 
 /* 320px - 480px (Mobile) */
@@ -717,9 +723,6 @@
         font-size: 11px;
     }
 
-    .fab-add-contacts {
-        display: none;
-    }
 
     .chat-list-overlay {
         display: none;

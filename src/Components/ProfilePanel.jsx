@@ -1,12 +1,18 @@
 import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router'
 import { ContactsContext } from '../Context/ContactsContext'
+import { groups } from '../data/ContactData.js'
 import './ProfilePanel.css'
 
 export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () => {} }) {
     const { contacts } = useContext(ContactsContext)
     const { contact_id } = useParams()
-    const contact_selected = contacts.find(contact => Number(contact.id) === Number(contact_id))
+    
+    const isGroup = contact_id && contact_id.toString().startsWith('g')
+    const contact_selected = isGroup
+        ? groups.find(g => g.id === contact_id)
+        : contacts.find(contact => Number(contact.id) === Number(contact_id))
+    
     const [expandedSection, setExpandedSection] = useState(null)
     const [showStatus, setShowStatus] = useState(false)
     const statusContacts = contacts.filter(contact => contact.statusvideo)
@@ -55,17 +61,39 @@ export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () 
                     )}
                     <img
                         src={contact_selected.profile_picture}
-                        alt={contact_selected.Name}
+                        alt={contact_selected.Name || contact_selected.name}
                         className="profile-avatar-large"
                         onClick={handleOpenStatus}
                         role="button"
                         title="Ver estados"
                     />
-                    <h2 className="profile-name">{contact_selected.Name}</h2>
-                    <p className="profile-role">contacto</p>
+                    <h2 className="profile-name">{contact_selected.Name || contact_selected.name}</h2>
+                    <p className="profile-role">{isGroup ? 'grupo' : 'contacto'}</p>
                 </div>
 
                 <div className="profile-sections">
+                    {isGroup && (
+                        <div className="profile-section">
+                            <button
+                                className="section-toggle"
+                                onClick={() => toggleSection('members')}
+                            >
+                                <span>Miembros ({contact_selected.members.length})</span>
+                                <span className="toggle-arrow">{expandedSection === 'members' ? '▼' : '▶'}</span>
+                            </button>
+                            {expandedSection === 'members' && (
+                                <div className="section-content members-list">
+                                    {contact_selected.members.map(member => (
+                                        <div key={member.id} className="member-item">
+                                            <img src={member.profile_picture} alt={member.Name} className="member-avatar" />
+                                            <p className="member-name">{member.Name}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     <div className="profile-section">
                         <button
                             className="section-toggle"
@@ -76,7 +104,19 @@ export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () 
                         </button>
                         {expandedSection === 'starred' && (
                             <div className="section-content">
-                                <p>No hay mensajes destacados</p>
+                                {isGroup && contact_selected.starredMessages && contact_selected.starredMessages.length > 0 ? (
+                                    <div className="starred-messages">
+                                        {contact_selected.starredMessages.map(msg => (
+                                            <div key={msg.id} className="starred-message-item">
+                                                <p className="starred-author">{msg.author}</p>
+                                                <p className="starred-text">{msg.Text}</p>
+                                                <span className="starred-date">{msg.created_at}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No hay mensajes destacados</p>
+                                )}
                             </div>
                         )}
                     </div>
@@ -91,7 +131,21 @@ export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () 
                         </button>
                         {expandedSection === 'media' && (
                             <div className="section-content">
-                                <p>No hay archivos multimedia</p>
+                                {isGroup && contact_selected.media && contact_selected.media.length > 0 ? (
+                                    <div className="media-list">
+                                        {contact_selected.media.map(item => (
+                                            <div key={item.id} className="media-item">
+                                                <span className="media-icon">{item.type === 'image' ? '🖼️' : '🎥'}</span>
+                                                <div className="media-info">
+                                                    <p className="media-name">{item.name}</p>
+                                                    <span className="media-date">{item.date}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No hay archivos multimedia</p>
+                                )}
                             </div>
                         )}
                     </div>
@@ -106,7 +160,21 @@ export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () 
                         </button>
                         {expandedSection === 'files' && (
                             <div className="section-content">
-                                <p>No hay archivos compartidos</p>
+                                {isGroup && contact_selected.files && contact_selected.files.length > 0 ? (
+                                    <div className="files-list">
+                                        {contact_selected.files.map(file => (
+                                            <div key={file.id} className="file-item">
+                                                <span className="file-icon">📄</span>
+                                                <div className="file-info">
+                                                    <p className="file-name">{file.name}</p>
+                                                    <span className="file-details">{file.size} • {file.date}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p>No hay archivos compartidos</p>
+                                )}
                             </div>
                         )}
                     </div>
@@ -121,8 +189,18 @@ export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () 
                         </button>
                         {expandedSection === 'info' && (
                             <div className="section-content">
-                                <p><strong>Última conexión:</strong> {contact_selected.last_time_connection}</p>
-                                <p><strong>Estado:</strong> disponible</p>
+                                {isGroup ? (
+                                    <>
+                                        <p><strong>Tipo:</strong> Grupo</p>
+                                        <p><strong>Miembros:</strong> {contact_selected.members.length}</p>
+                                        <p><strong>Última actividad:</strong> {contact_selected.last_time_connection}</p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <p><strong>Última conexión:</strong> {contact_selected.last_time_connection}</p>
+                                        <p><strong>Estado:</strong> disponible</p>
+                                    </>
+                                )}
                             </div>
                         )}
                     </div>
