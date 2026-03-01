@@ -1,15 +1,22 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router'
 import './Navbar.css'
 import { ContactsContext } from '../Context/ContactsContext'
 
-export default function Navbar() {
+export default function Navbar({ setShowChatListMobile = () => {} }) {
     const { contacts } = useContext(ContactsContext)
+    const navigate = useNavigate()
 
     const [showSettings, setShowSettings] = useState(false)
     const [showGroups, setShowGroups] = useState(false)
     const [showNotifications, setShowNotifications] = useState(false)
     const [showStatus, setShowStatus] = useState(false)
+    const [showProfile, setShowProfile] = useState(false)
     const [currentStatusIndex, setCurrentStatusIndex] = useState(0)
+
+    const handleLogout = () => {
+        navigate('/login')
+    }
 
     const statusContacts = contacts.filter(contact => contact.statusvideo)
     const currentStatus = statusContacts[currentStatusIndex]
@@ -44,7 +51,7 @@ export default function Navbar() {
         <>
             <nav className="navbar">
                 <div className="navbar-top">
-                    <div className="navbar-icon" title="Chat"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                    <div className="navbar-icon chat-toggle-btn" title="Chat" onClick={() => setShowChatListMobile(prev => !prev)} style={{ cursor: 'pointer' }}><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                         <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
                     </svg></div>
@@ -63,7 +70,7 @@ export default function Navbar() {
                         <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
                         <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
                     </svg></div>
-                    <div className="navbar-icon" title="Perfil"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <div className="navbar-icon" title="Perfil" onClick={() => setShowProfile(!showProfile)} style={{ cursor: 'pointer' }}><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
                     </svg></div>
                 </div>
@@ -120,9 +127,6 @@ export default function Navbar() {
                                         <div className="settings-item">
                                             <span>Acerca de</span>
                                         </div>
-                                        <div className="settings-item logout">
-                                            <span>Cerrar sesión</span>
-                                        </div>
                                     </div>
                                 </div>
                             </>
@@ -151,6 +155,26 @@ export default function Navbar() {
                                         </div>
                                         <div className="settings-item">
                                             <span>Grupos Archivados</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+
+                        {showProfile && (
+                            <>
+                                <div className="settings-overlay" onClick={() => setShowProfile(false)}></div>
+                                <div className="settings-modal">
+                                    <div className="settings-header">
+                                        <h2>Perfil</h2>
+                                        <button className="close-btn" onClick={() => setShowProfile(false)}>✕</button>
+                                    </div>
+                                    <div className="settings-content">
+                                        <div className="settings-item">
+                                            <span>Cambiar de cuenta</span>
+                                        </div>
+                                        <div className="settings-item logout" onClick={handleLogout}>
+                                            <span>Cerrar sesión</span>
                                         </div>
                                     </div>
                                 </div>

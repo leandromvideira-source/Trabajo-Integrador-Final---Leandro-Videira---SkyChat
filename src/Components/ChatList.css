@@ -10,6 +10,27 @@
     position: relative;
 }
 
+.chat-list-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 997;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .chat-list-header {
     padding: 15px 20px 16px;
     display: flex;
@@ -178,13 +199,12 @@
 }
 
 .add-contacts-modal {
-    position: absolute;
     bottom: 100px;
     right: 24px;
     background: white;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    width: 320px;
+    width: 280px;
     max-height: 400px;
     overflow: hidden;
     display: flex;
@@ -378,8 +398,330 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
+/* 2000px and above */
+@media (min-width: 2000px) {
+    .chat-list-overlay {
+        display: block;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 998;
+        width: 380px;
+        height: auto;
+        max-height: 85vh;
+        border-radius: 32px;
+        animation: slideUp 0.3s ease;
+    }
+
     .chat-list-panel {
+        border-radius: 32px;
+    }
+
+    .chat-list-header {
+        padding: 18px 24px;
+    }
+
+    .chat-list-header h2 {
+        font-size: 28px;
+    }
+
+    .search-input {
+        font-size: 15px;
+        padding: 14px 18px;
+    }
+
+    .chat-avatar {
+        width: 52px;
+        height: 52px;
+    }
+
+    .fab-add-contacts {
+        width: 64px;
+        height: 64px;
+        font-size: 36px;
+    }
+}
+
+/* 1440px - 1999px */
+@media (max-width: 1999px) and (min-width: 1441px) {
+    .chat-list-overlay {
+        display: block;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 998;
+        width: 380px;
+        height: auto;
+        max-height: 85vh;
+        border-radius: 32px;
+        animation: slideUp 0.3s ease;
+    }
+
+    .chat-list-panel {
+        border-radius: 28px;
+    }
+
+    .chat-list-header {
+        padding: 14px 18px;
+    }
+
+    .chat-list-header h2 {
+        font-size: 22px;
+    }
+
+    .search-input {
+        font-size: 13px;
+    }
+
+    .fab-add-contacts {
+        width: 52px;
+        height: 52px;
+        font-size: 28px;
+    }
+}
+
+/* 1024px - 1440px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .chat-list-overlay {
+        display: block;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 998;
+        width: 340px;
+        height: auto;
+        max-height: 85vh;
+        border-radius: 24px;
+        animation: slideUp 0.3s ease;
+    }
+
+    .chat-list-header h2 {
+        font-size: 20px;
+    }
+
+    .search-input {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .chat-info h3 {
+        font-size: 14px;
+    }
+
+    .chat-info p {
+        font-size: 11px;
+    }
+
+    .fab-add-contacts {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 768px - 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .chat-list-overlay {
+        display: block;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 998;
+        width: min(320px, 90vw);
+        height: auto;
+        max-height: 85vh;
+        border-radius: 20px;
+        animation: slideUp 0.3s ease;
+    }
+
+    .chat-list-header {
+        padding: 12px 16px;
+    }
+
+    .chat-list-header h2 {
+        font-size: 18px;
+    }
+
+    .logo-fenixtalk-navbar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .search-container {
+        padding: 10px 16px;
+    }
+
+    .search-input {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .chat-avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chat-item {
+        padding: 10px;
+    }
+
+    .chat-info h3 {
+        font-size: 13px;
+    }
+
+    .chat-info p {
+        font-size: 11px;
+    }
+
+    .fab-add-contacts {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        bottom: 18px;
+        right: 18px;
+    }
+}
+
+/* 481px - 768px */
+@media (max-width: 768px) and (min-width: 481px) {
+    .chat-list-overlay {
+        display: block;
+    }
+
+    .chat-list-panel {
+        display: none;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 998;
+        width: min(380px, 90vw);
+        height: auto;
+        max-height: 85vh;
+        border-radius: 20px;
+        animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translate(-50%, calc(-50% + 20px));
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .chat-list-panel.modal-open .contacts-list {
+        max-height: 60vh;
+        padding: 12px;
+    }
+
+    .fab-add-contacts {
+        display: none;
+    }
+}
+
+/* 320px - 480px (Mobile) */
+@media (max-width: 480px) {
+    .chat-list-panel {
+        display: none;
+    }
+
+    .chat-list-panel.modal-open {
+        display: flex;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        transform: none;
+        z-index: 998;
+        width: 100%;
+        height: auto;
+        max-height: calc(100vh - 60px);
+        border-radius: 0;
+        animation: slideDown 0.3s ease;
+        background-color: #1a1a1a65;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .chat-list-panel.modal-open .chat-list-header {
+        padding: 12px 16px;
+    }
+
+    .chat-list-panel.modal-open .chat-list-header h2 {
+        font-size: 20px;
+    }
+
+    .chat-list-panel.modal-open .search-container {
+        padding: 10px 16px;
+    }
+
+    .chat-list-panel.modal-open .search-input {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .chat-list-panel.modal-open .contacts-list {
+        max-height: calc(100vh - 180px);
+        padding: 8px;
+    }
+
+    .chat-list-panel.modal-open .chat-avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    .chat-list-panel.modal-open .chat-info h3 {
+        font-size: 13px;
+    }
+
+    .chat-list-panel.modal-open .chat-info p {
+        font-size: 11px;
+    }
+
+    .fab-add-contacts {
+        display: none;
+    }
+
+    .chat-list-overlay {
         display: none;
     }
 }

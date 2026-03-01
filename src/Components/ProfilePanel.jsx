@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { ContactsContext } from '../Context/ContactsContext'
 import './ProfilePanel.css'
 
-export default function ProfilePanel() {
+export default function ProfilePanel({ isModalOpen = false, setIsModalOpen = () => {} }) {
     const { contacts } = useContext(ContactsContext)
     const { contact_id } = useParams()
     const contact_selected = contacts.find(contact => Number(contact.id) === Number(contact_id))
@@ -45,8 +45,14 @@ export default function ProfilePanel() {
 
     return (
         <>
-            <div className="profile-panel">
+            {isModalOpen && (
+                <div className="profile-modal-overlay" onClick={() => setIsModalOpen(false)}></div>
+            )}
+            <div className={`profile-panel ${isModalOpen ? 'modal-open' : ''}`}>
                 <div className="profile-header-section">
+                    {isModalOpen && (
+                        <button className="profile-modal-close-btn" onClick={() => setIsModalOpen(false)}>✕</button>
+                    )}
                     <img
                         src={contact_selected.profile_picture}
                         alt={contact_selected.Name}

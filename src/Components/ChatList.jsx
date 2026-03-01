@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { ContactsContext } from '../Context/ContactsContext'
 import './ChatList.css'
 
-export default function ChatList() {
+export default function ChatList({ isModalOpen = false, setIsModalOpen = () => {} }) {
     const { contacts } = useContext(ContactsContext)
     const [searchTerm, setSearchTerm] = useState('')
     const [activeId, setActiveId] = useState(null)
@@ -14,7 +14,11 @@ export default function ChatList() {
     )
 
     return (
-        <div className="chat-list-panel">
+        <>
+            {isModalOpen && (
+                <div className="chat-list-overlay" onClick={() => setIsModalOpen(false)}></div>
+            )}
+            <div className={`chat-list-panel ${isModalOpen ? 'modal-open' : ''}`}>
             <div className="chat-list-header">
                 <h2>SkyChat</h2>
                 <img src="/Images/logo fenixtalk.png" alt="Fenixtalk Logo" className="logo-fenixtalk-navbar" />
@@ -36,7 +40,12 @@ export default function ChatList() {
                         to={`/chat/${contact.id}`}
                         key={contact.id}
                         className={`chat-item ${activeId === contact.id ? 'active' : ''}`}
-                        onClick={() => setActiveId(contact.id)}
+                        onClick={() => {
+                            setActiveId(contact.id)
+                            if (isModalOpen) {
+                                setIsModalOpen(false)
+                            }
+                        }}
                     >
                         <div className="chat-avatar-wrapper">
                             <img
@@ -84,6 +93,7 @@ export default function ChatList() {
                     </div>
                 </div>
             )}
-        </div>
+            </div>
+        </>
     )
 }

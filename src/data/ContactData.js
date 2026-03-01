@@ -26,50 +26,78 @@ const contacts = [
     {
         id: 2,
         PhoneNumber: '11-1233-1233',
-        Name: 'Bart',
+        Name: 'Cletus',
         last_time_connection: 'hace 1 hora',
-        profile_picture: '/Avatar/bart.jpg',
-        statusvideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        profile_picture: '/Avatar/cletus.jpg',
+        statusvideo: '/Estados/cletus.mp4',
         messages: [
             {
                 id: 1,
-                Text: 'hola como estas?',
+                Text: 'queremos 300 pretzel!',
                 send_by_name: false, /*true enviado por mi, false enviado por el contacto  */
                 created_at: '2023-02-02 12:00:00',
                 is_read: true
             },
             {
                 id: 2,
-                Text: 'Hola, muy bien! en que puedo ayudarte?',
+                Text: 'son 300 dolares',
                 send_by_name: true,
                 created_at: '2023-02-02 12:05:00',
                 is_read: false
-            }
+            },
+            {
+                id: 1,
+                Text: 'a ver, Sabina, Honoria, Tránsito, Higinio, Ufano, Hilario, Jacinta, Cándido, Teodosia, Cástulo, Gervasia, Epifanio, Gaudelia, Eufemio, Eustaquio, Brígida, Melitón, Leonila, Nicanor, Martina, Régulo, Teodora, Teódulo, Tiburcio, Celso ',
+                send_by_name: false, /*true enviado por mi, false enviado por el contacto  */
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
         ]
     }
     ,
     {
         id: 3,
         PhoneNumber: '11-1233-1233',
-        Name: 'moe',
+        Name: 'Milhouse',
         last_time_connection: 'hace 30 min',
-        profile_picture: '/Avatar/moe.jpg',
-        statusvideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        profile_picture: '/Avatar/milhouse.webp',
+        statusvideo: '/Estados/dileabart.mp4',
         messages: [
             {
                 id: 1,
-                Text: 'hola como estas?',
-                send_by_name: false, /*true enviado por mi, false enviado por el contacto  */
+                Text: 'milhouuuse',
+                send_by_name: true, /*true enviado por mi, false enviado por el contacto  */
                 created_at: '2023-02-02 12:00:00',
                 is_read: true
             },
             {
                 id: 2,
-                Text: 'Hola, muy bien! en que puedo ayudarte?',
-                send_by_name: true,
+                Text: 'quee!',
+                send_by_name: false,
                 created_at: '2023-02-02 12:05:00',
                 is_read: false
-            }
+            },
+            {
+                id: 1,
+                Text: 'dile a bart que venga aqui!!!',
+                send_by_name: true, /*true enviado por mi, false enviado por el contacto  */
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
+            {
+                id: 2,
+                Text: 'creo que esta con nelsoooon!',
+                send_by_name: false,
+                created_at: '2023-02-02 12:05:00',
+                is_read: false
+            },
+            {
+                id: 1,
+                Text: 'quien es nelson?',
+                send_by_name: true, /*true enviado por mi, false enviado por el contacto  */
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
         ]
     },
     {
@@ -134,31 +162,45 @@ const contacts = [
             },
             {
                 id: 2,
-                Text: 'ah.. nose me llevaria todo el dia, no podria limpiar ninguna otra entrada',
+                Text: 'asi? ... y que presidentes esta ahi?',
                 send_by_name: false,
                 created_at: '2023-02-02 12:05:00',
                 is_read: false
-            }
+            },
+            {
+                id: 1,
+                Text: 'eh... todos! estan en una fiesta! jimmy cater se quedo dormido',
+                send_by_name: true, /*true enviado por mi, false enviado por el contacto  */
+                created_at: '2023-02-02 12:00:00',
+                is_read: true
+            },
+                        {
+                id: 2,
+                Text: 'Si!! voy en este momento!',
+                send_by_name: false,
+                created_at: '2023-02-02 12:05:00',
+                is_read: false
+            },
         ]
     },
     {
         id: 6,
         PhoneNumber: '11-1233-1233',
-        Name: 'Ned',
+        Name: 'Otto',
         last_time_connection: 'hace 24 min',
-        profile_picture: '/Avatar/ned.jpg',
-        statusvideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        profile_picture: '/Avatar/otto.jpg',
+        statusvideo: '/Estados/otto.mp4',
         messages: [
             {
                 id: 1,
-                Text: 'hola como estas?',
+                Text: 'Toda mi vida eh sentido ... la verguenza de ser un pobre diablo, pero este premio de ser el conductor mas seguro del distrito, es un sueño hecho realidad!',
                 send_by_name: false, /*true enviado por mi, false enviado por el contacto  */
                 created_at: '2023-02-02 12:00:00',
                 is_read: true
             },
             {
                 id: 2,
-                Text: 'Hola, muy bien! en que puedo ayudarte?',
+                Text: 'otto despierta!!!',
                 send_by_name: true,
                 created_at: '2023-02-02 12:05:00',
                 is_read: false
